@@ -1,0 +1,12 @@
+{
+  "name": "catan-board-setup-generator",
+  "version": "1.0.0",
+  "description": "A web app that displays pre-generated, rules-compliant Catan board layouts",
+  "scripts": {
+    "start": "npx serve@latest -l 3000",
+    "dev": "npx serve@latest -l 3000 --no-clipboard"
+  },
+  "keywords": ["catan", "board-game", "generator"],
+  "license": "MIT"
+}
+
