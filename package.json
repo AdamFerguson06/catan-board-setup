@@ -1,12 +1,34 @@
 {
-  "name": "catan-board-setup-generator",
+  "name": "catan-board-generator",
+  "private": true,
   "version": "1.0.0",
-  "description": "A web app that displays pre-generated, rules-compliant Catan board layouts",
+  "type": "module",
+  "description": "A simple website that displays pre-generated, rules-compliant Catan board layouts.",
   "scripts": {
-    "start": "npx serve@latest -l 3000",
-    "dev": "npx serve@latest -l 3000 --no-clipboard"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "start": "vite"
   },
-  "keywords": ["catan", "board-game", "generator"],
-  "license": "MIT"
+  "keywords": [
+    "catan",
+    "board",
+    "generator",
+    "react",
+    "typescript",
+    "vite"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10"
+  }
 }
-

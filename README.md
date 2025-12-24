@@ -1,71 +1,92 @@
-# Catan Board Setup Generator
+# Catan Board Generator
 
-A simple web app that displays pre-generated, rules-compliant Catan board layouts for quick physical game setup.
+A simple React + TypeScript website that displays pre-generated, rules-compliant Catan board layouts for in-person play.
 
 ## Features
 
 - 50 pre-generated board layouts
-- All layouts follow official rules (no adjacent 6s and 8s)
-- Beautiful hexagonal visual display
-- Random layout selection
+- All layouts are rules-compliant (no adjacent 6s and 8s)
+- Random board selection with history
+- Go back to previous boards
 - Responsive design for mobile and desktop
+- Beautiful animations and UI
 
-## Running Locally
+## Project Structure
 
-### Option 1: Using npm (recommended)
+```
+catan_board_setup/
+├── src/
+│   ├── layouts.ts      # All 50 board layouts data
+│   ├── App.tsx         # Main React component
+│   ├── App.css         # Styles
+│   └── main.tsx        # Entry point
+├── public/
+│   ├── Robber-Pirate-Catan-logo 1.png
+│   └── better-robber-favicons/
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Install dependencies:
 
 ```bash
-npm start
+npm install
 ```
 
-Then open http://localhost:3000 in your browser.
+### Development
 
-### Option 2: Using Python
+Run the development server:
 
 ```bash
-python3 -m http.server 8080
+npm run dev
 ```
 
-Then open http://localhost:8080 in your browser.
+This will start the development server at `http://localhost:3000`
 
-### Option 3: Using PHP
+### Build for Production
 
 ```bash
-php -S localhost:8080
+npm run build
 ```
 
-Then open http://localhost:8080 in your browser.
+The built files will be in the `dist` folder.
 
-### Option 4: Just open the file
+### Preview Production Build
 
-You can also simply open `index.html` directly in your browser (some features may be limited due to CORS).
-
-## Usage
-
-1. Click **"🎲 Random Board"** to display a random layout
-2. Use the layout number shown to reproduce the same board later
-3. Set up your physical Catan board to match the display
-
-## Board Layout
-
-The board uses the standard 19-hex Catan layout:
-
-```
-        [1] [2] [3]
-      [4] [5] [6] [7]
-    [8] [9] [10] [11] [12]
-      [13] [14] [15] [16]
-        [17] [18] [19]
+```bash
+npm run preview
 ```
 
-## Terrain Types
+## Adding New Layouts
 
-| Color | Terrain | Resource |
-|-------|---------|----------|
-| 🌲 Dark Green | Forest | Wood |
-| 🌾 Yellow | Fields | Wheat |
-| 🐑 Light Green | Pasture | Sheep |
-| 🧱 Red | Hills | Brick |
-| ⛰️ Gray | Mountains | Ore |
-| 🏜️ Tan | Desert | None |
+To add new layouts, edit `src/layouts.ts`:
 
+1. Add a new array entry to the `layouts` array
+2. Each layout should contain 19 hex objects with `terrain` and `number` properties
+3. Valid terrains: `'Wood'`, `'Wheat'`, `'Sheep'`, `'Brick'`, `'Ore'`, `'Desert'`
+4. Valid numbers: `2-12` (or `null` for Desert)
+
+Example:
+
+```typescript
+// Layout 51
+[
+  { terrain: 'Wood', number: 8 }, { terrain: 'Sheep', number: 3 }, ...
+]
+```
+
+## License
+
+ISC
