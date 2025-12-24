@@ -31,7 +31,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  padding-top: 20px;
+  padding-top: 0;
   overflow-x: hidden;
   position: relative;
   width: 100%;
@@ -42,30 +42,32 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(10px, 2vw, 20px);
-  margin-bottom: 15px;
+  gap: clamp(8px, 1.5vw, 15px);
+  margin-bottom: 25px;
   position: relative;
   z-index: 1;
   background: #ffffff;
-  padding: 15px 25px;
-  border-radius: 10px;
+  padding: 8px 20px;
+  border-radius: 0;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 
 .logo {
-  width: clamp(35px, 8vw, 80px);
-  height: clamp(35px, 8vw, 80px);
+  width: clamp(30px, 5vw, 50px);
+  height: clamp(30px, 5vw, 50px);
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   flex-shrink: 0;
 }
 
 h1 {
   font-family: 'Cinzel', serif;
-  font-size: clamp(1rem, 5vw, 3rem);
+  font-size: clamp(0.9rem, 4vw, 2rem);
   color: #1a5276;
-  letter-spacing: clamp(2px, 1vw, 8px);
+  letter-spacing: clamp(2px, 0.8vw, 6px);
   margin: 0;
   text-transform: uppercase;
   font-variant: small-caps;
@@ -238,7 +240,9 @@ h1 {
 
 /* Resource icons */
 .resource-icon {
-  font-size: 2rem;
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
   margin-bottom: 5px;
   margin-top: -15px;
   filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.4));
@@ -314,24 +318,13 @@ h1 {
   }
 }
 
-.legend-color {
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
+.legend-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3));
   flex-shrink: 0;
 }
-
-.legend-color.wood { background: var(--wood); }
-.legend-color.wheat { background: var(--wheat); }
-.legend-color.sheep { background: var(--sheep); }
-.legend-color.brick { background: var(--brick); }
-.legend-color.ore { background: var(--ore); }
-.legend-color.desert { background: var(--desert); }
 
 /* Probability guide */
 .probability-guide {
@@ -377,7 +370,8 @@ footer {
   }
 
   .resource-icon {
-    font-size: 1.5rem;
+    width: 32px;
+    height: 32px;
     margin-top: -10px;
     margin-bottom: 3px;
   }
@@ -405,7 +399,8 @@ footer {
   }
 
   .resource-icon {
-    font-size: 1rem;
+    width: 22px;
+    height: 22px;
     margin-top: -8px;
     margin-bottom: 2px;
   }

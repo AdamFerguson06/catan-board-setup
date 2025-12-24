@@ -18,7 +18,7 @@ function Hex({ data, delay }: HexProps) {
     >
       <div className="hex-border"></div>
       <div className="hex-inner">
-        <div className="resource-icon">{terrainIcons[data.terrain]}</div>
+        <img className="resource-icon" src={terrainIcons[data.terrain]} alt={data.terrain} />
         {data.number !== null && (
           <div className={`number-token ${isRedNumber ? 'red-number' : ''}`}>
             {data.number}
@@ -114,27 +114,27 @@ function App() {
 
       <div className="legend">
         <div className="legend-item">
-          <div className="legend-color wood">🌲</div>
+          <img className="legend-icon" src={terrainIcons.Wood} alt="Wood" />
           <span>Wood</span>
         </div>
         <div className="legend-item">
-          <div className="legend-color wheat">🌾</div>
+          <img className="legend-icon" src={terrainIcons.Wheat} alt="Wheat" />
           <span>Wheat</span>
         </div>
         <div className="legend-item">
-          <div className="legend-color sheep">🐑</div>
+          <img className="legend-icon" src={terrainIcons.Sheep} alt="Sheep" />
           <span>Sheep</span>
         </div>
         <div className="legend-item">
-          <div className="legend-color brick">🧱</div>
+          <img className="legend-icon" src={terrainIcons.Brick} alt="Brick" />
           <span>Brick</span>
         </div>
         <div className="legend-item">
-          <div className="legend-color ore">⛰️</div>
+          <img className="legend-icon" src={terrainIcons.Ore} alt="Ore" />
           <span>Ore</span>
         </div>
         <div className="legend-item">
-          <div className="legend-color desert">🏜️</div>
+          <img className="legend-icon" src={terrainIcons.Desert} alt="Desert" />
           <span>Desert</span>
         </div>
       </div>

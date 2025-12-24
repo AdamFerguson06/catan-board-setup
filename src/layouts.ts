@@ -420,14 +420,14 @@ export const boardStructure = [
   [17, 18, 19]
 ];
 
-// Terrain icons mapping
+// Terrain icons mapping (image paths)
 export const terrainIcons: Record<string, string> = {
-  Wood: '🌲',
-  Wheat: '🌾',
-  Sheep: '🐑',
-  Brick: '🧱',
-  Ore: '⛰️',
-  Desert: '🏜️'
+  Wood: '/recourse-icons/Wood.png',
+  Wheat: '/recourse-icons/Wheat.png',
+  Sheep: '/recourse-icons/Sheep.png',
+  Brick: '/recourse-icons/Brick.png',
+  Ore: '/recourse-icons/Rock.png',
+  Desert: '/recourse-icons/Desert.png'
 };
 
 // Number to probability dots mapping
