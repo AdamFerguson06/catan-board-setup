@@ -138,10 +138,6 @@ function App() {
           <span>Desert</span>
         </div>
       </div>
-
-      <footer>
-        <p>All layouts are rules-compliant: no adjacent 6s and 8s</p>
-      </footer>
     </>
   );
 }
