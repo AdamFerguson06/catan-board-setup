@@ -22,8 +22,12 @@
   transition: transform 0.12s ease-out;
 }
 
-.hex-tile:hover {
-  transform: scale(1.045);
+/* Hover lift only on devices with a real pointer — on touch, a tap
+   would otherwise leave the tile stuck at the hover scale */
+@media (hover: hover) and (pointer: fine) {
+  .hex-tile:hover {
+    transform: scale(1.045);
+  }
 }
 
 @keyframes hexAppear {

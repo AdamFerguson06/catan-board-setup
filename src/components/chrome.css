@@ -5,6 +5,9 @@
 /* ---- Site Header ----------------------------------------- */
 .site-header {
   width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 40;
   background: var(--glass, rgba(13, 34, 52, 0.55));
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -59,12 +62,37 @@
   gap: 12px;
 }
 
-/* Stack the header (brand above controls) when one row is too tight */
-@media (max-width: 840px) {
+/* Compact two-row header when one row is too tight:
+   row 1 = brand + counter chip, row 2 = two full-width buttons.
+   760px (not 840) so landscape phones keep the single-row bar. */
+@media (max-width: 760px) {
   .site-header__inner {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    gap: 10px 12px;
+  }
+
+  .controls {
+    display: contents; /* promote controls into the header flex row for reordering */
+  }
+
+  .site-header__brand {
+    order: 1;
+  }
+
+  .layout-chip {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .btn--primary {
+    order: 3;
+  }
+
+  .btn--secondary {
+    order: 4;
+  }
+
+  .btn {
+    flex: 1 1 45%; /* forces the pair onto their own shared row */
   }
 }
 
@@ -72,9 +100,15 @@
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 7px;
+  min-height: 44px; /* touch-target floor (Apple HIG / WCAG 2.5.5) */
   padding: 10px 22px;
   border-radius: 999px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
   font-family: 'Cinzel', serif;
   font-size: 0.8rem;
   font-weight: 600;
@@ -227,7 +261,9 @@
 
   .btn {
     font-size: 0.72rem;
-    padding: 8px 16px;
+    letter-spacing: 0.06em;
+    padding: 8px 14px;
+    white-space: nowrap;
   }
 
   .layout-chip {
