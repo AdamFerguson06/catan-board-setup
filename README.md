@@ -6,10 +6,12 @@ A simple React + TypeScript website that displays pre-generated, rules-compliant
 
 - 50 pre-generated board layouts
 - All layouts are rules-compliant (no adjacent 6s and 8s)
+- The 9 classic base-game harbors (4× 3:1, one 2:1 per resource) rendered around the coast
 - Random board selection with history
 - Go back to previous boards
-- Responsive design for mobile and desktop
-- Beautiful animations and UI
+- Single responsive SVG board — scales cleanly from phone to desktop
+- Number tokens with probability dots (red 6/8)
+- Warm "parchment table" theme with a vintage-map water ring
 
 ## Project Structure
 
@@ -17,11 +19,22 @@ A simple React + TypeScript website that displays pre-generated, rules-compliant
 catan_board_setup/
 ├── src/
 │   ├── layouts.ts      # All 50 board layouts data
-│   ├── App.tsx         # Main React component
-│   ├── App.css         # Styles
-│   └── main.tsx        # Entry point
+│   ├── App.tsx         # Root component: state + composition
+│   ├── App.css         # Design tokens, base styles, app shell
+│   ├── main.tsx        # Entry point
+│   ├── board/
+│   │   ├── geometry.ts # Axial hex grid math, land/sea coordinates
+│   │   ├── harbors.ts  # Harbor data (classic arrangement) + pier math
+│   │   ├── Board.tsx   # SVG board: sea ring, harbors, tiles, tokens
+│   │   └── board.css   # Board-specific styles + animations
+│   └── components/
+│       ├── Header.tsx  # App bar: brand left, controls right
+│       ├── Controls.tsx# Random/Back buttons + layout counter
+│       ├── Legend.tsx  # Resource + harbor legend
+│       └── chrome.css  # Page-chrome styles
 ├── public/
 │   ├── Robber-Pirate-Catan-logo 1.png
+│   ├── recourse-icons/ # Terrain icon PNGs
 │   └── better-robber-favicons/
 ├── index.html
 ├── package.json

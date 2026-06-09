@@ -1,0 +1,250 @@
+/* ============================================================
+   chrome.css — page-chrome styles for Header, Controls, Legend
+   ============================================================ */
+
+/* ---- Site Header ----------------------------------------- */
+.site-header {
+  width: 100%;
+  background: var(--glass, rgba(13, 34, 52, 0.55));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border, rgba(243, 236, 217, 0.14));
+  padding-block: 10px;
+  padding-inline: 16px;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.site-header__logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--glass-border, rgba(243, 236, 217, 0.14));
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.site-header__title {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-light, #f3ecd9);
+  line-height: 1;
+}
+
+/* ---- Controls (rendered inside the header) ---------------- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Stack the header (brand above controls) when one row is too tight */
+@media (max-width: 840px) {
+  .site-header__inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+/* Shared pill base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition:
+    background-color 120ms ease,
+    box-shadow 120ms ease,
+    transform 80ms ease,
+    opacity 120ms ease;
+}
+
+.btn:focus-visible {
+  outline: 2.5px solid var(--text-light, #3a2d1c);
+  outline-offset: 3px;
+}
+
+.btn svg {
+  flex-shrink: 0;
+}
+
+/* Primary — gold pill */
+.btn--primary {
+  background: var(--accent, #f4d03f);
+  color: var(--text-dark, #16222e);
+  box-shadow: 0 2px 10px rgba(244, 208, 63, 0.30);
+}
+
+.btn--primary:hover {
+  background: var(--accent-deep, #d9b12e);
+  box-shadow: 0 4px 16px rgba(244, 208, 63, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn--primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 6px rgba(244, 208, 63, 0.20);
+}
+
+/* Secondary — ghost pill */
+.btn--secondary {
+  background: transparent;
+  color: var(--text-light, #f3ecd9);
+  border: 1px solid var(--glass-border, rgba(243, 236, 217, 0.14));
+}
+
+.btn--secondary:hover:not(:disabled) {
+  border-color: rgba(58, 45, 28, 0.40);
+  background: rgba(58, 45, 28, 0.06);
+}
+
+.btn--secondary:active:not(:disabled) {
+  background: rgba(58, 45, 28, 0.04);
+  transform: translateY(1px);
+}
+
+.btn--secondary:disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Layout chip */
+.layout-chip {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.95rem;
+  color: rgba(58, 45, 28, 0.88);
+  padding: 6px 14px;
+  background: var(--glass, rgba(13, 34, 52, 0.55));
+  border: 1px solid var(--glass-border, rgba(243, 236, 217, 0.14));
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.layout-chip strong {
+  color: var(--text-light, #f3ecd9);
+  font-weight: 600;
+}
+
+/* ---- Legend ---------------------------------------------- */
+.legend {
+  width: 100%;
+  padding-inline: 16px;
+  padding-block: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.legend__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 18px;
+  background: var(--glass, rgba(13, 34, 52, 0.55));
+  border: 1px solid var(--glass-border, rgba(243, 236, 217, 0.14));
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  max-width: 860px;
+  width: 100%;
+}
+
+.legend__divider {
+  width: 1px;
+  height: 28px;
+  background: var(--glass-border, rgba(243, 236, 217, 0.14));
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.875rem;
+  color: var(--text-light, #f3ecd9);
+  white-space: nowrap;
+}
+
+.legend-item img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.legend-item svg {
+  flex-shrink: 0;
+}
+
+/* ---- Small-screen overrides (≤520px) --------------------- */
+@media (max-width: 520px) {
+  .site-header__title {
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+  }
+
+  .site-header__logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .controls {
+    gap: 8px;
+  }
+
+  .btn {
+    font-size: 0.72rem;
+    padding: 8px 16px;
+  }
+
+  .layout-chip {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
+
+  .legend__bar {
+    gap: 5px 12px;
+    padding: 8px 12px;
+  }
+
+  .legend__divider {
+    display: none;
+  }
+
+  .legend-item {
+    font-size: 0.8rem;
+  }
+}
