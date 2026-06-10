@@ -265,10 +265,10 @@
   .legend__bar {
     flex-direction: column;
     align-items: flex-start;
-    gap: 14px;
+    gap: 12px;
     width: 100%;
     max-width: none;
-    padding: 20px 24px;
+    padding: 16px;
   }
 
   .legend__divider {
@@ -277,7 +277,7 @@
   }
 
   .legend-item {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 }
 

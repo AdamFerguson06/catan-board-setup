@@ -20,7 +20,7 @@
   --glass: rgba(255, 251, 240, 0.72);
   --glass-border: rgba(58, 45, 28, 0.18);
   /* Desktop right-rail column: layout chip + legend share this width */
-  --rail-w: 180px;
+  --rail-w: 150px;
   --wood: #2d5016;
   --wheat: #daa520;
   --sheep: #7cb342;
