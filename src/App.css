@@ -97,8 +97,11 @@ body {
   justify-content: flex-start;
   flex: 1;
   width: 100%;
-  gap: clamp(8px, 1.5vw, 14px); /* match the app-shell rhythm */
-  padding-top: 6px; /* a touch of air below the header bar */
+  /* Equal ~22px of air above and below the board:
+     top = 14px here + the ~8px app-shell gap,
+     bottom = 14px gap + the legend's own 8px block padding */
+  gap: 14px;
+  padding-top: 14px;
 }
 
 .board-wrap {
