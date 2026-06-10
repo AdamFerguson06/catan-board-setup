@@ -249,8 +249,15 @@
 
 /* ---- Desktop (≥1024px): vertical legend beside the board -- */
 @media (min-width: 1024px) {
+  /* Grid alignment: the layout chip and the legend form one fixed-width
+     right-rail column (the content row mirrors the header's container) */
+  .layout-chip {
+    width: var(--rail-w, 180px);
+    text-align: center;
+  }
+
   .legend {
-    width: auto;
+    width: var(--rail-w, 180px);
     flex: 0 0 auto;
     padding: 0;
   }
@@ -259,7 +266,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 14px;
-    width: auto;
+    width: 100%;
     max-width: none;
     padding: 20px 24px;
   }
