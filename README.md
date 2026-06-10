@@ -11,7 +11,7 @@ A simple React + TypeScript website that displays pre-generated, rules-compliant
 - Go back to previous boards
 - Single responsive SVG board — scales cleanly from phone to desktop
 - Number tokens with probability dots (red 6/8)
-- Warm "parchment table" theme with a vintage-map water ring
+- Warm "parchment table" theme; the water is one smooth hexagonal plate with a depth gradient and coastline, like the physical board frame
 
 ## Project Structure
 
@@ -23,9 +23,9 @@ catan_board_setup/
 │   ├── App.css         # Design tokens, base styles, app shell
 │   ├── main.tsx        # Entry point
 │   ├── board/
-│   │   ├── geometry.ts # Axial hex grid math, land/sea coordinates
+│   │   ├── geometry.ts # Axial hex grid math, land coords, water frame
 │   │   ├── harbors.ts  # Harbor data (classic arrangement) + pier math
-│   │   ├── Board.tsx   # SVG board: sea ring, harbors, tiles, tokens
+│   │   ├── Board.tsx   # SVG board: water plate, harbors, tiles, tokens
 │   │   └── board.css   # Board-specific styles + animations
 │   └── components/
 │       ├── Header.tsx  # App bar: brand left, controls right
