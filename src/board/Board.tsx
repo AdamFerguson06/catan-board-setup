@@ -4,8 +4,8 @@ import { terrainIcons, probabilityDots } from '../layouts';
 import {
   axialToPixel,
   polygonPoints,
+  framePoints,
   LAND_COORDS,
-  SEA_COORDS,
   VIEW_BOX,
 } from './geometry';
 import { HARBORS } from './harbors';
@@ -369,27 +369,48 @@ export default function Board({ layout }: BoardProps) {
       >
         <title>Catan Board Layout</title>
 
-      {/* 1. Sea ring */}
-      {SEA_COORDS.map((coord, i) => {
-        const center = axialToPixel(coord);
-        return (
-          <polygon
-            key={i}
-            points={polygonPoints(center, 0.99)}
-            className="sea-hex"
-            fill="var(--sea-tile, #1b5378)"
-            stroke="rgba(58,45,28,0.25)"
-            strokeWidth={1.5}
-          />
-        );
-      })}
+      {/* 1. Sea — one smooth hexagonal plate, like the physical frame:
+          no scalloped hex edges on the outside, just a single coastline. */}
+      <defs>
+        <radialGradient
+          id="sea-depth"
+          gradientUnits="userSpaceOnUse"
+          cx="0"
+          cy="0"
+          r="318"
+        >
+          {/* Water is only visible from ~radius 195 (land edge) outward, so
+              the shallow stop sits at 63% to land exactly on the waterline */}
+          <stop offset="0%" style={{ stopColor: 'var(--sea-shallow, #7cb3d2)' }} />
+          <stop offset="63%" style={{ stopColor: 'var(--sea-shallow, #7cb3d2)' }} />
+          <stop offset="84%" style={{ stopColor: 'var(--sea-mid, #6fa9c9)' }} />
+          <stop offset="100%" style={{ stopColor: 'var(--sea-deep, #5b8fb0)' }} />
+        </radialGradient>
+      </defs>
+      <polygon className="sea-plate" points={framePoints()} fill="url(#sea-depth)" />
 
-      {/* 2. Harbors */}
+      {/* 2. Sand base under the land mass — keeps the seams between terrain
+          tiles parchment (not water) and draws one ink coastline around the
+          whole island. Pass A (coast) is an ink silhouette whose stroke
+          survives only beyond the land edge; pass B (sand) paints slightly
+          oversized fills on top so no antialiasing cracks remain. */}
+      <g className="land-coast" aria-hidden="true">
+        {LAND_COORDS.map((coord, i) => (
+          <polygon key={i} points={polygonPoints(axialToPixel(coord))} />
+        ))}
+      </g>
+      <g className="land-base" aria-hidden="true">
+        {LAND_COORDS.map((coord, i) => (
+          <polygon key={i} points={polygonPoints(axialToPixel(coord), 1.01)} />
+        ))}
+      </g>
+
+      {/* 3. Harbors */}
       {HARBORS.map((harbor, i) => (
         <HarborMark key={i} harbor={harbor} />
       ))}
 
-      {/* 3. Land tiles */}
+      {/* 4. Land tiles */}
       {LAND_COORDS.map((_, i) => (
         <HexTile key={i} hex={layout[i]} index={i} />
       ))}

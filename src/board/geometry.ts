@@ -41,14 +41,20 @@ export const LAND_COORDS: AxialCoord[] = [
   { q: -2, r: 2 }, { q: -1, r: 2 }, { q: 0, r: 2 },
 ];
 
-export const SEA_COORDS: AxialCoord[] = [
-  { q: 0, r: -3 }, { q: 1, r: -3 }, { q: 2, r: -3 }, { q: 3, r: -3 },
-  { q: 3, r: -2 }, { q: 3, r: -1 }, { q: 3, r: 0 },
-  { q: 2, r: 1 }, { q: 1, r: 2 }, { q: 0, r: 3 },
-  { q: -1, r: 3 }, { q: -2, r: 3 }, { q: -3, r: 3 },
-  { q: -3, r: 2 }, { q: -3, r: 1 }, { q: -3, r: 0 },
-  { q: -2, r: -1 }, { q: -1, r: -2 },
-];
+/* One smooth giant hexagon for the water plate, like the physical frame.
+   Flat top/bottom edges, vertices at left/right. R = 11·HEX_SIZE/√3 is the
+   exact circumscribed hexagon: its edges pass through every outer corner
+   of the sea-ring hexes (top edge sits at y = ±5.5·HEX_SIZE = ±275). */
+export const FRAME_RADIUS = (11 * HEX_SIZE) / Math.sqrt(3); // ≈ 317.54
 
-// Computed programmatically: min/max over all sea-hex corner points (x ±303.1, y ±275), padded 10 units
-export const VIEW_BOX = '-314 -285 628 570';
+export function framePoints(): string {
+  const pts: Point[] = [];
+  for (let i = 0; i < 6; i++) {
+    const a = (i * 60 * Math.PI) / 180;
+    pts.push({ x: FRAME_RADIUS * Math.cos(a), y: FRAME_RADIUS * Math.sin(a) });
+  }
+  return pts.map((p) => `${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ');
+}
+
+// Frame extents (x ±317.5, y ±275), padded ~10 units
+export const VIEW_BOX = '-328 -285 656 570';

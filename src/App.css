@@ -10,7 +10,13 @@
   --ocean-deep: #f3e9d2;
   --ocean: #ead9b8;
   --ocean-light: #d9c49a;
-  --sea-tile: #6aa6c8;
+  /* Water — radial depth band (light near the coast, deeper at the rim)
+     plus the ink used for the single coastline around the water mass */
+  --sea-shallow: #7cb3d2;
+  --sea-mid: #6fa9c9;
+  --sea-deep: #5b8fb0;
+  --coast-ink: rgba(44, 62, 78, 0.5);
+  --sand: #ecddba; /* island base showing between terrain tiles */
   --accent: #f4d03f;
   --accent-deep: #d9b12e;
   --text-light: #3a2d1c; /* page foreground ink (name kept for cross-file compat) */
@@ -80,10 +86,22 @@ body {
 }
 
 /* ── 5. Board Wrapper ──────────────────────────────────────── */
-/* On phones/tablets the row wrapper dissolves — children stay direct
-   flex items of .app-shell, preserving the stacked layout */
+/* On phones/tablets the board sits right under the header (controls stay
+   adjacent to the thing they control) with the legend hugging below; the
+   board is width-locked, so whatever height is left over pools once at
+   the bottom of the page instead of floating the content in dead bands */
 .content-row {
-  display: contents;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  width: 100%;
+  /* Equal ~34px of air above and below the board:
+     top = 26px here + the ~8px app-shell gap,
+     bottom = 26px gap + the legend's own 8px block padding */
+  gap: 26px;
+  padding-top: 26px;
 }
 
 .board-wrap {
@@ -91,9 +109,6 @@ body {
   max-width: 860px;
   margin-inline: auto;
   padding-inline: 16px;
-  /* Absorb spare viewport height and center the board in it, so
-     leftover space frames the board instead of pooling at the bottom */
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,6 +124,7 @@ body {
 
   .content-row {
     display: flex;
+    flex-direction: row;
     align-items: center;
     flex: 1;
     min-height: 0; /* let the board area shrink below content size */
@@ -122,6 +138,7 @@ body {
   }
 
   .board-wrap {
+    flex: 1; /* fill the row beside the fixed-width legend rail */
     height: 100%;
     max-width: none; /* row flex governs width now */
     min-width: 0;
