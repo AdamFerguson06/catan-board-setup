@@ -1,0 +1,111 @@
+/* ── Board SVG container ───────────────────────────────────────────────────── */
+.board-frame {
+  position: relative;
+  width: 100%;
+}
+
+.board-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 14px 26px rgba(58, 45, 28, 0.22));
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.board-svg.is-zoomed {
+  cursor: grab;
+}
+
+/* Desktop fit-to-screen: the frame carries the viewBox aspect ratio so the
+   svg box never letterboxes (the zoom-gesture math relies on box == viewBox
+   aspect). Height-driven, capped by available width. */
+@media (min-width: 1024px) {
+  .board-frame {
+    width: auto; /* let aspect-ratio derive width (base rule sets 100%) */
+    height: 100%;
+    max-width: 100%;
+    aspect-ratio: 628 / 570; /* keep in sync with VIEW_BOX in geometry.ts */
+    margin-inline: auto;
+  }
+
+  .board-svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Appears only while zoomed in */
+.board-reset {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  min-height: 44px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-light, #3a2d1c);
+  background: var(--glass, rgba(255, 251, 240, 0.72));
+  border: 1px solid var(--glass-border, rgba(58, 45, 28, 0.18));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  animation: resetFadeIn 0.15s ease-out;
+}
+
+@keyframes resetFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Terrain fill classes ──────────────────────────────────────────────────── */
+.fill-wood   { fill: var(--wood,   #2d5016); }
+.fill-wheat  { fill: var(--wheat,  #c8a227); }
+.fill-sheep  { fill: var(--sheep,  #6ab04c); }
+.fill-brick  { fill: var(--brick,  #a84327); }
+.fill-ore    { fill: var(--ore,    #7f8c9a); }
+.fill-desert { fill: var(--desert, #d4b483); }
+
+/* ── Hex tile entrance animation ──────────────────────────────────────────── */
+.hex-tile {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hexAppear 0.45s ease-out backwards;
+  transition: transform 0.12s ease-out;
+}
+
+/* Hover lift only on devices with a real pointer — on touch, a tap
+   would otherwise leave the tile stuck at the hover scale */
+@media (hover: hover) and (pointer: fine) {
+  .hex-tile:hover {
+    transform: scale(1.045);
+  }
+}
+
+@keyframes hexAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.78);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Reduced motion ────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hex-tile {
+    animation: none;
+  }
+}
+
+/* ── Harbor badge drop-shadow ─────────────────────────────────────────────── */
+.harbor circle {
+  filter: drop-shadow(0 2px 4px rgba(58, 45, 28, 0.25));
+}
