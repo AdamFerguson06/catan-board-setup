@@ -70,9 +70,12 @@ export default function Controls({
         Go Back
       </button>
 
-      {/* Layout counter chip */}
+      {/* Layout counter chip — single span so the flex chip doesn't
+          split the text into items and swallow the spaces */}
       <div className="layout-chip">
-        Layout <strong>#{layoutNumber}</strong> of {layoutCount}
+        <span>
+          Layout <strong>#{layoutNumber}</strong> of {layoutCount}
+        </span>
       </div>
     </div>
   );

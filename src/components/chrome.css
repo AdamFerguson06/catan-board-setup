@@ -177,8 +177,12 @@
   pointer-events: none;
 }
 
-/* Layout chip */
+/* Layout chip — same pill height as the buttons for a uniform header row */
 .layout-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
   font-family: 'Crimson Pro', serif;
   font-size: 0.95rem;
   color: rgba(58, 45, 28, 0.88);
