@@ -247,6 +247,33 @@
   flex-shrink: 0;
 }
 
+/* ---- Desktop (≥1024px): vertical legend beside the board -- */
+@media (min-width: 1024px) {
+  .legend {
+    width: auto;
+    flex: 0 0 auto;
+    padding: 0;
+  }
+
+  .legend__bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    width: auto;
+    max-width: none;
+    padding: 20px 24px;
+  }
+
+  .legend__divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .legend-item {
+    font-size: 0.95rem;
+  }
+}
+
 /* ---- Small-screen overrides (≤520px) --------------------- */
 @media (max-width: 520px) {
   .site-header__title {

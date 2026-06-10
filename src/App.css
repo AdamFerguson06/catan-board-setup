@@ -78,6 +78,12 @@ body {
 }
 
 /* ── 5. Board Wrapper ──────────────────────────────────────── */
+/* On phones/tablets the row wrapper dissolves — children stay direct
+   flex items of .app-shell, preserving the stacked layout */
+.content-row {
+  display: contents;
+}
+
 .board-wrap {
   width: 100%;
   max-width: 860px;
@@ -89,6 +95,32 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* ── 5b. Desktop (≥1024px): fit-to-screen, legend beside board ── */
+@media (min-width: 1024px) {
+  .app-shell {
+    height: 100dvh; /* lock to the viewport — no page scroll */
+    overflow: hidden;
+    padding-bottom: 0;
+  }
+
+  .content-row {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-height: 0; /* let the board area shrink below content size */
+    width: 100%;
+    gap: 12px;
+    padding: 12px 28px 20px;
+  }
+
+  .board-wrap {
+    height: 100%;
+    max-width: none; /* row flex governs width now */
+    min-width: 0;
+    padding-inline: 0;
+  }
 }
 
 /* ── 6. Focus ──────────────────────────────────────────────── */

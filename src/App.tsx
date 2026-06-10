@@ -46,10 +46,12 @@ function App() {
           layoutCount={layouts.length}
         />
       </Header>
-      <main className="board-wrap">
-        <Board key={animationKey} layout={layouts[currentLayout]} />
-      </main>
-      <Legend />
+      <div className="content-row">
+        <main className="board-wrap">
+          <Board key={animationKey} layout={layouts[currentLayout]} />
+        </main>
+        <Legend />
+      </div>
     </div>
   );
 }
