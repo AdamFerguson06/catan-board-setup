@@ -66,8 +66,12 @@
    row 1 = brand + counter chip, row 2 = two full-width buttons.
    760px (not 840) so landscape phones keep the single-row bar. */
 @media (max-width: 760px) {
+  .site-header {
+    padding-block: 8px;
+  }
+
   .site-header__inner {
-    gap: 10px 12px;
+    gap: 8px 10px;
   }
 
   .controls {
@@ -251,8 +255,8 @@
   }
 
   .site-header__logo {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
   }
 
   .controls {
@@ -271,9 +275,12 @@
     padding: 5px 10px;
   }
 
+  /* Balanced grid (4×2 on phones) instead of a ragged 5/3 wrap */
   .legend__bar {
-    gap: 5px 12px;
-    padding: 8px 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(76px, 1fr));
+    gap: 8px 6px;
+    padding: 10px;
   }
 
   .legend__divider {
@@ -281,6 +288,14 @@
   }
 
   .legend-item {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .legend-item img,
+  .legend-item svg {
+    width: 18px;
+    height: 18px;
   }
 }
